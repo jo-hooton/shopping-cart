@@ -23,7 +23,8 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
 
-  <body>
+  <body class="min-h-screen flex flex-col">
+    <%= render "layouts/navbar" %>
     <%= yield %>
   </body>
 </html>
