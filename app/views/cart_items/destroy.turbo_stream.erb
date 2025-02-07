@@ -1,0 +1,9 @@
+<% if @cart.empty? %>
+  <%= turbo_stream.update @cart %>
+<% else %>
+  <%= turbo_stream.remove @cart_item %>
+  <%= turbo_stream.update dom_id(@cart, :total) do %>
+    <%= render "carts/total", cart: @cart %>
+  <% end %>
+<% end %>
+<%= render_turbo_stream_flash_messages %>
