@@ -1,0 +1,7 @@
+<% flash.each do |flash_type, message| %>
+  <div class="px-6 py-3 text-white rounded-full bg-gray-900"
+              data-controller="removals"
+              data-action="animationend->removals#remove">
+    <%= message %>
+  </div>
+<% end %>
