@@ -1,1 +1,24 @@
-<span class='block'>Total</span><span class='block font-semibold'><%= @cart.total_amount %></span>
+<%= turbo_frame_tag dom_id(cart, :total),
+        data: { controller: 'discount' },
+        class: 'flex flex-col justify-between text-lg w-full p-4 mb-8 border border-gray-100 rounded-md' do %>
+
+  <div class='flex flex-col mt-4 w-full'>
+    <div class='flex justify-between w-full'>
+      <p><%= cart.total_items %> items</p>
+      <p>$<span data-discount-target="cartTotal"><%= cart.total_formatted %></span></p>
+    </div>
+    <div class='flex justify-between w-full'>
+      <p>Move the slider to specify the discount amount</p>
+      <p class='text-green-600'>$<span data-discount-target="discountValue">0</span></p>
+    </div>
+    <div class='flex justify-between w-full'>
+      <input class='w-full' type="range" data-discount-target="discountSlider" min="0" max="<%= cart.total < 100 ? cart.total : '100.00' %>" value="0">
+    </div>
+  </div>
+  <div class='mt-4 w-full flex justify-between'>
+    <p>Total</p>
+    <p class='flex'>
+      $<span data-discount-target="totalPrice" class='block font-semibold'><%= cart.total_formatted %></span>
+    </p>
+  </div>
+<% end %>

@@ -1,7 +1,7 @@
 <%= turbo_frame_tag cart, class: 'flex-grow w-full flex flex-col items-center justify-center' do %>
   <div class='flex w-full justify-between'>
     <h1 class="text-2xl mb-4">Cart</h1>
-    <%= button_to "Reset", reset_carts_path, method: :delete, data: { turbo_confirm: "Start a new cart?" }, class: "text-gray-800 text-sm" %>
+    <%= button_to "Reset", reset_carts_path, method: :delete, class: "text-gray-800 text-sm" %>
   </div>
   <% if cart.empty? %>
     <div class='flex flex-col flex-grow justify-center items-center gap-2'>
@@ -13,9 +13,7 @@
     <div class='flex flex-col flex-grow w-full justify-center'>
       <%= render cart_items %>
     </div>
-    <%= turbo_frame_tag dom_id(cart, :total), class: 'flex justify-between text-lg w-full p-4 mb-8 border border-gray-100 rounded-md' do %>
-      <%= render "carts/total", cart: cart %>
-    <% end %>
+    <%= render "carts/total", cart: cart %>
     <%= button_to "Place order", checkout_carts_path, method: :patch, class: "w-full bg-green-600 text-white py-2 rounded-md", form: { class: "w-full" } %>
   <% end %>
 <% end %>

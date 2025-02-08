@@ -1,11 +1,10 @@
 <%= turbo_frame_tag cart_item, class: "w-full" do %>
   <div class="relative w-full p-4 border-b border-gray-200">
-    <!-- Delete Button (Positioned Top-Right) -->
+    <!-- Delete Button -->
     <%= button_to cart_item_path(cart_item), method: :delete, class: "absolute top-4 right-4" do %>
       <%= image_tag("delete-icon.png", alt: "Delete", class: "h-5 w-5 cursor-pointer opacity-50 hover:opacity-100 transition-opacity") %>
     <% end %>
 
-    <!-- Grid Layout for Consistent Column Alignment -->
     <div class="grid grid-cols-[100px_1fr_1fr_100px] items-center gap-6">
       <!-- Product Image -->
       <%= image_tag("cart-empty.png", alt: "Empty cart", class: "h-32 w-auto") %>
@@ -29,7 +28,7 @@
 
       <!-- Price -->
       <div class="text-lg font-semibold text-gray-900 text-right">
-        <%= cart_item.product.display_price %>
+        $<%= cart_item.display_price %>
       </div>
     </div>
   </div>
