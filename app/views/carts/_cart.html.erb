@@ -13,8 +13,9 @@
     <div class='flex flex-col flex-grow w-full justify-center'>
       <%= render cart_items %>
     </div>
-    <%= turbo_frame_tag dom_id(cart, :total) do %>
+    <%= turbo_frame_tag dom_id(cart, :total), class: 'flex justify-between text-lg w-full p-4 mb-8 border border-gray-100 rounded-md' do %>
       <%= render "carts/total", cart: cart %>
     <% end %>
+    <%= button_to "Place order", checkout_carts_path, method: :patch, class: "w-full bg-green-600 text-white py-2 rounded-md", form: { class: "w-full" } %>
   <% end %>
 <% end %>

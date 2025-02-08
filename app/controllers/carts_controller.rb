@@ -2,15 +2,24 @@ class CartsController < ApplicationController
   before_action :set_cart
 
   def show
-    @cart_items = @cart.cart_items.order(:id).includes(:product)
+    @cart_items = @cart.cart_items.unpaid.order(:id).includes(:product)
   end
 
   def reset
-    @cart.cart_items.destroy_all
+    @cart.cart_items.unpaid.destroy_all
 
     respond_to do |format|
-      format.html { redirect_to cart_path }
-      format.turbo_stream
+      format.html { redirect_to cart_path, flash: { success: 'Cart reset' } }
+      format.turbo_stream { flash.now[:success] = 'Cart reset' }
+    end
+  end
+
+  def checkout
+    @cart.cart_items.unpaid.update_all(paid: true)
+
+    respond_to do |format|
+      format.html { redirect_to cart_path, flash: { success: 'Checkout complete' } }
+      format.turbo_stream { flash.now[:success] = 'Checkout complete' }
     end
   end
 

@@ -3,7 +3,7 @@ class CartItemsController < ApplicationController
   before_action :set_cart_item, only: %i[update destroy]
 
   def create
-    @cart_item = @cart.cart_items.find_or_initialize_by(product_id: params[:product_id])
+    @cart_item = @cart.cart_items.unpaid.find_or_initialize_by(product_id: params[:product_id])
 
     @cart_item.quantity += 1 unless @cart_item.new_record?
 
