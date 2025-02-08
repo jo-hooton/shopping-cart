@@ -1,12 +1,18 @@
 <%= turbo_frame_tag cart, class: 'flex-grow w-full flex flex-col items-center justify-center' do %>
+  <div class='flex w-full justify-between'>
+    <h1 class="text-2xl mb-4">Cart</h1>
+    <%= button_to "Reset", reset_carts_path, method: :delete, data: { turbo_confirm: "Start a new cart?" }, class: "text-gray-800 text-sm" %>
+  </div>
   <% if cart.empty? %>
-    <div class='flex flex-col items-center gap-2'>
+    <div class='flex flex-col flex-grow justify-center items-center gap-2'>
       <%= image_tag("cart-empty.png", alt: "Empty cart", class: "h-10 w-auto mb-5") %>
       <h2 class='text-2xl'>The cart is empty</h2>
       <p class='text-gray-800 text-xs'>Add items from the catalog</p>
     </div>
   <% else %>
-    <%= render cart_items %>
+    <div class='flex flex-col flex-grow w-full justify-center'>
+      <%= render cart_items %>
+    </div>
     <%= turbo_frame_tag dom_id(cart, :total) do %>
       <%= render "carts/total", cart: cart %>
     <% end %>

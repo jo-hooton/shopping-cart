@@ -1,4 +1,4 @@
-<%= turbo_frame_tag cart_item, class: "block w-full" do %>
+<%= turbo_frame_tag cart_item, class: "w-full" do %>
   <div class="relative w-full p-4 border-b border-gray-200">
     <!-- Delete Button (Positioned Top-Right) -->
     <%= button_to cart_item_path(cart_item), method: :delete, class: "absolute top-4 right-4" do %>
