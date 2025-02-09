@@ -79,7 +79,7 @@ Visit **[http://localhost:3000](http://localhost:3000)**
 
 ## 🚀 Future Improvements
 
-- **Persist cart discount in the database** so it does not reset when cart items are added or updated.
+- **Add tests with RSpec**.
 - **Add images to products** for a better user experience.
 - **Improve mobile responsiveness** to enhance usability on smaller screens.
 - **Add user authentication** so different users can have separate carts.
