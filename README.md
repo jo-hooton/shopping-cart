@@ -84,4 +84,3 @@ Visit **[http://localhost:3000](http://localhost:3000)**
 - **Improve mobile responsiveness** to enhance usability on smaller screens.
 - **Add user authentication** so different users can have separate carts.
 - **Implement order history** tracking to allow users to view past purchases.
-- **Enhance checkout process** by integrating a payment gateway (e.g., Stripe, PayPal).
