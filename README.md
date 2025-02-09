@@ -1,24 +1,76 @@
-# README
+# 🛒 Shopping Cart (Rails + Turbo + Stimulus + Tailwind CSS)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple **shopping cart application** built with **Ruby on Rails, Turbo Streams, Stimulus.js, and Tailwind CSS**.
 
-Things you may want to cover:
+---
 
-* Ruby version
+## 🚀 Features
 
-* System dependencies
+### 🛍️ Product Catalog
 
-* Configuration
+- Browse the **product catalog**.
+- **Add products to the cart**.
 
-* Database creation
+### 🛒 Cart Page
 
-* Database initialization
+- **Change item quantities** dynamically.
+- **Remove items** from the cart.
+- **Reset the cart** (clears all items).
+- **Amounts update in real-time** as the cart changes.
+- **"Place Order" button clears the cart** (marks all items as paid).
+- **Discount Slider**
+  - Adjusts the discount amount applied to the cart.
+  - The **maximum discount is $100**.
+  - Dynamically updates the total price.
 
-* How to run the test suite
+---
 
-* Services (job queues, cache servers, search engines, etc.)
+## 💻 Running the App Locally
 
-* Deployment instructions
+### 1️⃣ Clone the Repo
 
-* ...
+### 2️⃣ Install Dependencies
+
+Ensure you have **Ruby & Bundler** installed, then run:
+
+```sh
+bundle install
+```
+
+### 3️⃣ Setup the Database
+
+```sh
+rails db:create db:migrate db:seed
+```
+
+_(Seeding adds sample products to the catalog.)_
+
+### 4️⃣ Start the Rails Server
+
+```sh
+bin/dev
+```
+
+_(Runs Rails + Tailwind + Turbo Streams.)_
+
+### 5️⃣ Open in Browser
+
+Visit **[http://localhost:3000](http://localhost:3000)**
+
+---
+
+## 🛠️ Tech Stack
+
+- **Ruby on Rails**
+- **Turbo Streams & Turbo Frames** (Hotwire for real-time UI updates)
+- **Stimulus.js** (Custom JavaScript controllers)
+- **Tailwind CSS** (Styling)
+- **PostgreSQL or SQLite** (Database)
+
+---
+
+## ⚡ Key Implementation Details
+
+- Uses **Turbo Streams & Turbo Frames** for **instant UI updates**.
+- **Stimulus.js handles dynamic elements** like the discount slider & cart quantity buttons.
+- The **cart persists in the session**, so users don't lose their cart on refresh.
