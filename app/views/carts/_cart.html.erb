@@ -21,6 +21,6 @@
     <!-- Cart total and discount slider -->
     <%= render "carts/total", cart: cart %>
     <!-- Checkout button -->
-    <%= button_to "Place order", checkout_carts_path, method: :patch, class: "w-full h-10 bg-green-600 text-white text-sm py-2 rounded-md", form: { class: "w-full" } %>
+    <%= button_to "Place order", checkout_carts_path, method: :patch, class: "w-full h-10 bg-green-600 text-white text-sm py-2 rounded-md cursor-pointer", form: { class: "w-full" } %>
   <% end %>
 <% end %>

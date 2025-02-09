@@ -19,23 +19,23 @@
         <div class="flex items-center bg-gray-100 rounded-lg">
           <button type="button" 
             data-action="click->quantity#decrement"
-            class="pl-3 pr-2 font-semibold text-gray-700 hover:bg-gray-100 rounded-l-lg">
+            class="pl-3 pr-2 font-semibold text-gray-700 hover:bg-gray-100 rounded-l-lg cursor-pointer">
             −
           </button>
 
-          <%= f.input :quantity, 
-            label: false, 
-            input_html: { 
-              min: 1, 
+          <%= f.input :quantity,
+            label: false,
+            input_html: {
+              min: 1,
               class: "w-8 bg-transparent text-center font-semibold focus:outline-none appearance-none",
               data: { quantity_target: "input" },
               onchange: "this.form.requestSubmit();"
-            } 
+            }
           %>
 
-          <button type="button" 
+          <button type="button"
             data-action="click->quantity#increment"
-            class="pl-3 pr-2 py-1 font-semibold text-gray-700 hover:bg-gray-100 rounded-r-lg">
+            class="pl-3 pr-2 py-1 font-semibold text-gray-700 hover:bg-gray-100 rounded-r-lg cursor-pointer">
             +
           </button>
         </div>
