@@ -23,6 +23,19 @@ class CartsController < ApplicationController
     end
   end
 
+  def update
+    @cart = Cart.find(params[:id])
+
+    if @cart.update(cart_params)
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: 'Discount updated successfully!' }
+        format.turbo_stream
+      end
+    else
+      redirect_to cart_path, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_cart
@@ -32,5 +45,9 @@ class CartsController < ApplicationController
       @cart = Cart.create
       session[:cart_id] = @cart.id  # Store cart_id in session
     end
+  end
+
+  def cart_params
+    params.require(:cart).permit(:discount)
   end
 end

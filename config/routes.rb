@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   root 'products#index'
 
   resources :products, only: [:index]
-  resources :carts, only: [:show, :destroy] do
+  resources :carts, only: [:show, :update] do
     resources :cart_items, only: [:create, :update, :destroy], shallow: true
     delete :reset, on: :collection
     patch :checkout, on: :collection

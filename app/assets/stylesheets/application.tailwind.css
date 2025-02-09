@@ -13,7 +13,7 @@ body {
   font-family: 'Open Sans', sans-serif
 }
 
-/* Hide default number input controls in Firefox */
+/* Hide default number input controls in Firefox (not supported in Tailwind) */
 input[type="number"] {
   -moz-appearance: textfield;
 }

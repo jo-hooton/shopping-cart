@@ -74,3 +74,14 @@ Visit **[http://localhost:3000](http://localhost:3000)**
 - Uses **Turbo Streams & Turbo Frames** for **instant UI updates**.
 - **Stimulus.js handles dynamic elements** like the discount slider & cart quantity buttons.
 - The **cart persists in the session**, so users don't lose their cart on refresh.
+
+---
+
+## 🚀 Future Improvements
+
+- **Persist cart discount in the database** so it does not reset when cart items are added or updated.
+- **Add images to products** for a better user experience.
+- **Improve mobile responsiveness** to enhance usability on smaller screens.
+- **Add user authentication** so different users can have separate carts.
+- **Implement order history** tracking to allow users to view past purchases.
+- **Enhance checkout process** by integrating a payment gateway (e.g., Stripe, PayPal).

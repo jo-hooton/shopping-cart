@@ -1,56 +1,66 @@
 <%= turbo_frame_tag dom_id(cart, :total),
-        data: { controller: 'discount' },
-        class: 'flex flex-col justify-between text-lg w-full px-4 py-1 my-6 border border-gray-100 rounded-md' do %>
+        data: { controller: "discount" },
+        class: "flex flex-col justify-between text-lg w-full px-4 py-1 my-6 border border-gray-100 rounded-md" do %>
 
-  <div class='flex flex-col mt-4 w-full'>
-    <div class='flex justify-between w-full'>
-      <p class='text-gray-800 font-light text-sm'><%= cart.total_items %> <%= cart.total_items == 1 ? "item" : "items" %></p>
-      <p class='font-semibold'>$<span data-discount-target="cartTotal"><%= cart.total_formatted %></span></p>
+  <%= simple_form_for cart, method: :patch, html: { data: { turbo: true } } do |f| %>
+    <div class="flex flex-col mt-4 w-full">
+      <div class="flex justify-between w-full">
+        <!-- Cart total items -->
+        <p class="text-gray-800 font-light text-sm"><%= cart.total_items %> <%= cart.total_items == 1 ? "item" : "items" %></p>
+        <!-- Cart total price -->
+        <p class="font-semibold">$<span data-discount-target="cartTotal"><%= cart.total_formatted %></span></p>
+      </div>
+      <!-- Discount slider -->
+      <div class="flex justify-between mt-1 mb-2 w-full">
+        <p class="text-gray-800 font-light text-sm">Move the slider to specify the discount amount</p>
+        <p class="text-green-600">$<span data-discount-target="discountAmount"><%= @cart.discount_formatted %></span></p>
+      </div>
+      <div class="w-full mt-1">
+        <%= f.input :discount,
+          as: :range,
+          label: false,
+          input_html: {
+            min: 0,
+            max: cart.total < 100 ? cart.total : 100,
+            value: cart.discount_formatted,
+            class:"w-full h-1 rounded-lg appearance-none cursor-pointer
+                  bg-gray-300
+                  [&::-webkit-slider-runnable-track]:h-1
+                  [&::-webkit-slider-runnable-track]:rounded-full
+                  [&::-webkit-slider-thumb]:appearance-none
+                  [&::-webkit-slider-thumb]:w-10
+                  [&::-webkit-slider-thumb]:h-10
+                  [&::-webkit-slider-thumb]:bg-green-600
+                  [&::-webkit-slider-thumb]:rounded-full
+                  [&::-webkit-slider-thumb]:-mt-[18px]
+                  [&::-moz-range-track]:h-1
+                  [&::-moz-range-track]:rounded-full
+                  [&::-moz-range-track]:bg-gray-300
+                  [&::-moz-range-progress]:bg-green-600
+                  [&::-moz-range-progress]:h-1
+                  [&::-moz-range-thumb]:w-10
+                  [&::-moz-range-thumb]:h-10
+                  [&::-moz-range-thumb]:bg-green-600
+                  [&::-moz-range-thumb]:rounded-full
+                  [&::-moz-range-thumb]:border-none
+                  [&::-moz-range-progress]:rounded-full
+                  [&::-moz-range-progress]:border-l-2
+                  [&::-moz-range-progress]:border-green-600",
+            style: "background: linear-gradient(to right, #16a34a 0%, #16a34a var(--value, 0%), #e5e7eb var(--value, 0%));
+                    background-size: calc(var(--value, 0%) 100%;
+                    background-repeat: no-repeat;",
+            data: { discount_target: "discountSlider" }
+          }
+        %>
+      </div>
     </div>
-    <div class='flex justify-between mt-1 mb-2 w-full'>
-      <p class='text-gray-800 font-light text-sm'>Move the slider to specify the discount amount</p>
-      <p class='text-green-600'>$<span data-discount-target="discountValue">0</span></p>
-    </div>
-    <div class="w-full mt-1">
-      <input
-        type="range"
-        data-discount-target="discountSlider"
-        min="0"
-        max="<%= cart.total < 100 ? cart.total : '100.00' %>"
-        value="0"
-        class="w-full h-1 rounded-lg appearance-none cursor-pointer
-          bg-gray-300
-          [&::-webkit-slider-runnable-track]:h-1
-          [&::-webkit-slider-runnable-track]:rounded-full
-          [&::-webkit-slider-thumb]:appearance-none
-          [&::-webkit-slider-thumb]:w-10
-          [&::-webkit-slider-thumb]:h-10
-          [&::-webkit-slider-thumb]:bg-green-600
-          [&::-webkit-slider-thumb]:rounded-full
-          [&::-webkit-slider-thumb]:-mt-[18px]
-          [&::-moz-range-track]:h-1
-          [&::-moz-range-track]:rounded-full
-          [&::-moz-range-track]:bg-gray-300
-          [&::-moz-range-progress]:bg-green-600
-          [&::-moz-range-progress]:h-1
-          [&::-moz-range-thumb]:w-10
-          [&::-moz-range-thumb]:h-10
-          [&::-moz-range-thumb]:bg-green-600
-          [&::-moz-range-thumb]:rounded-full
-          [&::-moz-range-thumb]:border-none
-          [&::-moz-range-progress]:rounded-full
-          [&::-moz-range-progress]:border-l-2
-          [&::-moz-range-progress]:border-green-600"
-        style="background: linear-gradient(to right, #16a34a 0%, #16a34a var(--value, 0%), #e5e7eb var(--value, 0%));
-              background-size: calc(var(--value, 0%) 100%;
-              background-repeat: no-repeat;"
-      />
-    </div>
-  </div>
-  <div class='mt-8 py-4 w-full flex justify-between border-t border-gray-100'>
-    <p class='font-semibold'>Total</p>
-    <p class='flex font-bold text-xl'>
-      $<span data-discount-target="totalPrice" class='block'><%= cart.total_formatted %></span>
+  <% end %>
+
+  <!-- Total price with discount -->
+  <div class="mt-8 py-4 w-full flex justify-between border-t border-gray-100">
+    <p class="font-semibold">Total</p>
+    <p class="flex font-bold text-xl">
+      $<span data-discount-target="totalPrice" class="block"><%= cart.total_formatted - cart.discount_formatted %></span>
     </p>
   </div>
 <% end %>
