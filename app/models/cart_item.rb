@@ -5,7 +5,7 @@ class CartItem < ApplicationRecord
   scope :unpaid, -> { where(paid: false) }
 
   def display_price
-    format('%.2f', total_price)
+    total_price.to_i
   end
 
   def total_price

@@ -3,7 +3,7 @@ class Cart < ApplicationRecord
   has_many :products, through: :cart_items
 
   def total_formatted
-    format('%.2f', total)
+    total.to_i
   end
 
   def total

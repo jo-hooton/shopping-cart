@@ -1,7 +1,9 @@
 <%= turbo_frame_tag cart, class: 'flex-grow w-full flex flex-col items-center justify-center' do %>
   <div class='flex w-full justify-between'>
-    <h1 class="text-2xl mb-4">Cart</h1>
-    <%= button_to "Reset", reset_carts_path, method: :delete, class: "text-gray-800 text-sm" %>
+    <h1 class="font-semibold text-2xl mb-4">Cart</h1>
+    <% unless cart.empty? %>
+      <%= button_to "Reset", reset_carts_path, method: :delete, class: "font-light text-gray-700 hover:text-gray-800 text-sm cursor-pointer" %>
+    <% end %>
   </div>
   <% if cart.empty? %>
     <div class='flex flex-col flex-grow justify-center items-center gap-2'>
@@ -10,10 +12,10 @@
       <p class='text-gray-800 text-xs'>Add items from the catalog</p>
     </div>
   <% else %>
-    <div class='flex flex-col flex-grow w-full justify-center'>
+    <div class='flex flex-col flex-grow w-full justify-center my-4'>
       <%= render cart_items %>
     </div>
     <%= render "carts/total", cart: cart %>
-    <%= button_to "Place order", checkout_carts_path, method: :patch, class: "w-full bg-green-600 text-white py-2 rounded-md", form: { class: "w-full" } %>
+    <%= button_to "Place order", checkout_carts_path, method: :patch, class: "w-full h-10 bg-green-600 text-white text-sm py-2 rounded-md", form: { class: "w-full" } %>
   <% end %>
 <% end %>

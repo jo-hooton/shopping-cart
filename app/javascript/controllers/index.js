@@ -8,3 +8,5 @@ import RemovalsController from "./removals_controller"
 application.register("removals", RemovalsController)
 import DiscountController from "./discount_controller"
 application.register("discount", DiscountController)
+import QuantityController from "./quantity_controller"
+application.register("quantity", QuantityController)
