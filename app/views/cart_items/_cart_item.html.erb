@@ -1,8 +1,8 @@
 <%= turbo_frame_tag cart_item, class: "w-full" do %>
   <div class="relative w-full py-3 border-b border-gray-100">
     <!-- Delete Button -->
-    <%= button_to cart_item_path(cart_item), method: :delete, class: "absolute top-3 right-0" do %>
-      <%= image_tag("delete-icon.png", alt: "Delete", class: "h-5 w-5 cursor-pointer opacity-90 hover:opacity-100 transition-opacity") %>
+    <%= button_to cart_item_path(cart_item), method: :delete, class: "absolute h-5 w-5 top-3 right-0 cursor-pointer" do %>
+      <%= image_tag("delete-icon.png", alt: "Delete", class: "h-5 w-5 opacity-50 hover:opacity-100 transition-opacity") %>
     <% end %>
 
     <div class="grid grid-cols-[100px_1fr_1fr_100px] items-center gap-6">
@@ -16,10 +16,10 @@
 
       <!-- Quantity Input -->
       <%= simple_form_for cart_item, method: :patch, html: { class: "flex items-center", data: { turbo: true, controller: 'quantity' } } do |f| %>
-        <div class="flex items-center bg-gray-100 rounded-lg">
+        <div class="flex items-stretch bg-gray-100 rounded-lg">
           <button type="button" 
             data-action="click->quantity#decrement"
-            class="pl-3 pr-2 font-semibold text-gray-700 hover:bg-gray-100 rounded-l-lg cursor-pointer">
+            class="pl-3 pr-2 font-semibold text-gray-700 hover:bg-gray-200 rounded-l-lg cursor-pointer">
             −
           </button>
 
@@ -30,12 +30,13 @@
               class: "w-8 bg-transparent text-center font-semibold focus:outline-none appearance-none",
               data: { quantity_target: "input" },
               onchange: "this.form.requestSubmit();"
-            }
+            },
+            wrapper_html: { class: 'flex' }
           %>
 
           <button type="button"
             data-action="click->quantity#increment"
-            class="pl-3 pr-2 py-1 font-semibold text-gray-700 hover:bg-gray-100 rounded-r-lg cursor-pointer">
+            class="pl-3 pr-2 py-1 font-semibold text-gray-700 hover:bg-gray-200 rounded-r-lg cursor-pointer">
             +
           </button>
         </div>
