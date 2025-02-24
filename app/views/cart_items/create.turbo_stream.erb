@@ -1,1 +1,4 @@
 <%= render_turbo_stream_flash_messages %>
+<%= turbo_stream.update dom_id(@cart_item.cart, :item_count) do %>
+  <%= link_to "Cart #{@cart_item.cart.total_items}", cart_path(@cart_item.cart), class: 'cursor-pointer', id: dom_id(@cart_item.cart, :item_count) %>
+<% end %>

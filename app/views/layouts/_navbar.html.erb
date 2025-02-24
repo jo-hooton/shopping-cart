@@ -3,7 +3,7 @@
     <%= link_to image_tag("Logo.png", alt: "Loadar Logo", class: "h-10 w-auto cursor-pointer"), root_path %>
     <nav class="flex items-center">
       <%= link_to "Catalog", products_path, class: "mr-4 cursor-pointer" %>
-      <%= link_to "Cart", cart_path(@cart), class: 'cursor-pointer' %>
+      <%= link_to "Cart #{@cart.total_items}", cart_path(@cart), class: 'cursor-pointer', id: dom_id(@cart, :item_count) %>
     </nav>
   </div>
 </header>
